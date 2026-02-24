@@ -154,7 +154,7 @@ export default function App() {
     };
     const updated = [t, ...txns];
     setTxns(updated);
-    await saveTxns(updated, user.email);
+    await saveTxns(updated, user.uid);
     setForm({ ...initForm, date: new Date().toISOString().split("T")[0] });
     showToast(form.type === "income" ? "Income recorded." : "Expense recorded.");
     setView("dashboard");
@@ -163,7 +163,7 @@ export default function App() {
   const delTxn = async (id) => {
     const updated = txns.filter(t => t.id !== id);
     setTxns(updated);
-    await saveTxns(updated, user.email);
+    await saveTxns(updated, user.uid);
     showToast("Entry removed.");
   };
 
