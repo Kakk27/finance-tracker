@@ -152,8 +152,8 @@ export default function App() {
       <div style={R.grain} />
 
       <nav style={R.nav}>
-        <img src={NewLogo} alt="KAKK HEAN" style={{ height: 44, position: "absolute", left: "50%", transform: "translateX(-50%)" }} />
-        <div style={{ display: "flex", gap: 10, marginLeft: "auto" }}>
+        <img src={NewLogo} alt="KAKK HEAN" className="nav-logo" style={{ height: 44, position: "absolute", left: "50%", transform: "translateX(-50%)" }} />
+        <div className="nav-btns" style={{ display: "flex", gap: 10, marginLeft: "auto" }}>
           <button className="g-btn" onClick={() => { setAuthMode("login"); setScreen("auth"); }}>SIGN IN</button>
           <button className="f-btn" onClick={() => { setAuthMode("signup"); setScreen("auth"); }}>JOIN FREE</button>
         </div>
@@ -163,14 +163,14 @@ export default function App() {
         <div style={{ fontSize: 10, letterSpacing: "0.45em", color: "#c8f000", fontFamily: "'Courier New',monospace", marginBottom: 18 }}>
           SCRIPT · CINEMATOGRAPHY · FINANCE
         </div>
-        <h1 style={R.heroTitle}>NOW<br />YOU<br />KNOW</h1>
+        <h1 className="hero-title" style={R.heroTitle}>NOW<br />YOU<br />KNOW</h1>
         <p style={R.heroSub}>Your money. Your ledger. No excuses.</p>
         <button className="hero-btn" onClick={() => { setAuthMode("signup"); setScreen("auth"); }}>
           GET ACCESS
         </button>
       </div>
 
-      <div style={R.credits}>
+      <div className="credits-section" style={R.credits}>
         {[["TRACK", "Income & Expenses"], ["ANALYSE", "Top Spending"], ["OWN", "Your Financial Story"]].map(([l, v]) => (
           <div key={l} style={{ textAlign: "center" }}>
             <div style={{ fontSize: 9, color: "#fff", letterSpacing: "0.25em", fontFamily: "'Courier New',monospace", marginBottom: 4 }}>{l}</div>
@@ -258,7 +258,7 @@ export default function App() {
               }}>
                 <CountUp end={balance} formattingFn={fmtUSD} duration={1.5} />
               </div>
-              <div style={{ display: "flex", gap: 32, marginTop: 20, paddingTop: 18, borderTop: "1px solid #1a1a14" }}>
+              <div className="bal-stats" style={{ display: "flex", gap: 32, marginTop: 20, paddingTop: 18, borderTop: "1px solid #1a1a14" }}>
                 {[["INCOME", income, "#5a9a5a"], ["EXPENSES", expenses, "#9a5a5a"], ["ENTRIES", txns.length, "#5a7a9a"]].map(([l, v, c]) => (
                   <div key={l}>
                     <div style={{ fontSize: 9, color: "#fff", letterSpacing: "0.18em", fontFamily: "'Courier New',monospace" }}>{l}</div>
@@ -512,4 +512,13 @@ const CSS = `
   .f-btn:hover { background:#d4ff00; }
   .hero-btn { background:#c8f000; border:none; color:#000; padding:14px 40px; font-size:12px; letter-spacing:.25em; cursor:pointer; font-family:'Courier New',monospace; font-weight:bold; transition:background .2s; }
   .hero-btn:hover { background:#d4ff00; }
+
+  @media (max-width: 480px) {
+    .nav-logo { height: 28px !important; position: static !important; transform: none !important; }
+    .nav-btns { margin-left: 0 !important; gap: 8px !important; }
+    .nav-btns .g-btn, .nav-btns .f-btn { padding: 6px 12px !important; font-size: 9px !important; }
+    .hero-title { font-size: clamp(52px, 15vw, 150px) !important; }
+    .credits-section { padding: 12px 10px 16px !important; flex-wrap: wrap !important; gap: 10px !important; justify-content: center !important; }
+    .bal-stats { gap: 12px !important; justify-content: space-between !important; }
+  }
 `;
